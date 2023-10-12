@@ -117,7 +117,7 @@ services:
       restart_policy:
         condition: on-failure
     ports:
-      - '8081:8081'
+      - '8081:8080'
     volumes:
       - 'dependency-track:/data'
     restart: unless-stopped
