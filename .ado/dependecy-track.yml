@@ -18,8 +18,9 @@ jobs:
    displayName: 'Generate SBOM and Send to Dependency Track' 
    steps:
    - task: NodeTool@0
-     inputs:       
-       checkLatest: true
+     inputs:
+      versionSource: 'spec'
+      versionSpec: '18.x'
    - task: CmdLine@2
      displayName: "Checkout a public GH repo"
      inputs:
@@ -35,7 +36,8 @@ jobs:
      displayName: "Generate SBOM and Send to Dependency Tracker" 
      inputs:
        script: |          
-        FETCH_LICENSE=true cdxgen tour-of-heroes-angular/ -o bom-1.4.json --spec-version 1.4 \
+        cd tour-of-heroes-angular/
+        FETCH_LICENSE=true cdxgen -o bom-1.4.json --spec-version 1.4 \
         --server-url $(DEPENDENCYTRACK_HOSTNAME) \
         --api-key $(DEPENDENCYTRACK_APIKEY) \
         --project-name tour-of-heroes-angular-from-ado \
