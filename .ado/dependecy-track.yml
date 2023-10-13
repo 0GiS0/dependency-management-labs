@@ -24,7 +24,7 @@ jobs:
      displayName: "Checkout a public GH repo"
      inputs:
       script: |
-         clone https://github.com/0GiS0/tour-of-heroes-angular.git && cd tour-of-heroes-angular && npm install        
+         git clone https://github.com/0GiS0/tour-of-heroes-angular.git && cd tour-of-heroes-angular && npm install        
    - task: CmdLine@2
      displayName: "Install cdxgen" 
      inputs:
