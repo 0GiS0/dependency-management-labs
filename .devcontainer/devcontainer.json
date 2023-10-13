@@ -9,7 +9,10 @@
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/snyk-cli:1": {},
-		"ghcr.io/devcontainers-contrib/features/node-asdf:0": {}
+		"ghcr.io/devcontainers-contrib/features/node-asdf:0": {},
+		"ghcr.io/dhoeric/features/trivy:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+		
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.

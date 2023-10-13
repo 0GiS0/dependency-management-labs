@@ -1,0 +1,33 @@
+name: Dependecy-track
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:  
+        repository: 0gis0/tour-of-heroes-dotnet-api
+    - name: Configure .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    - name: Install cdxgen
+      run: npm install -g cdxgen
+    - name: Generate SBOM
+      run: cdxgen tour-of-heroes-dotnet-api/ -o bom-1.4.json --spec-version 1.4    
+    - name: Send SBOM to DependencyTrack server
+      uses: DependencyTrack/gh-upload-sbom@v2.0.0
+      with:            
+        serverHostname: ${{ secrets.DEPENDENCYTRACK_HOSTNAME }}        
+        apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
+        projectName: 'Tour of Heroes API from GitHub Actions'
+        projectVersion: 'main'
+        bomFilename: "bom-1.4.json"
+        autoCreate: true
