@@ -3,7 +3,29 @@
 # Username: admin
 # Password: admin
 
-snyk auth
+git clone https://github.com/0GiS0/tour-of-heroes-dotnet-api.git &&  cd tour-of-heroes-dotnet-api && dotnet build
+
+cdxgen -o bom-1.4.json --spec-version 1.4
+
+export FETCH_LICENSE=true
+cdxgen -o bom-with-license.json --spec-version 1.4
+
+curl -X "POST" "http://localhost:8080/api/v1/bom" \
+     -H 'Content-Type: multipart/form-data' \
+     -H "X-Api-Key: F6gyljd8lvVARQxKkd8WUpgO6wG4o0gv" \
+     -F "autoCreate=true" \
+     -F "projectName=tour-of-heroes-dotnet-api" \
+     -F "projectVersion=1.0.0" \
+     -F "bom=@bom-with-license.json" \
+     -w '%{response_code}'
+
+# Use cdxgen to upload the result
+FETCH_LICENSE=true cdxgen -o bom-from-cdxgen.json --spec-version 1.4 \
+--server-url https://refactored-winner-96rjjwr96fx7px-8081.app.github.dev \
+--api-key 1YTRKqtdRBk3ore2vciFvHSjcauYVcJp \
+--project-name tour-of-heroes-dotnet-cdxgen \
+--project-version 1.0.0 \
+--auto-create 
 
 git clone https://github.com/0GiS0/tour-of-heroes-angular.git && cd tour-of-heroes-angular && npm install
 
@@ -20,23 +42,6 @@ curl -X "POST" "http://localhost:8080/api/v1/bom" \
      -F "projectName=tour-of-heroes-angular" \
      -F "projectVersion=1.0.0" \
      -F "bom=@bom.1.4.json" \
-     -w '%{response_code}'
-
-
-git clone https://github.com/0GiS0/tour-of-heroes-dotnet-api.git &&  cd tour-of-heroes-dotnet-api && dotnet build
-
-cdxgen -o bom-1.4.json --spec-version 1.4
-
-export FETCH_LICENSE=true
-cdxgen -o bom-with-license.json --spec-version 1.4
-
-curl -X "POST" "http://localhost:8080/api/v1/bom" \
-     -H 'Content-Type: multipart/form-data' \
-     -H "X-Api-Key: F6gyljd8lvVARQxKkd8WUpgO6wG4o0gv" \
-     -F "autoCreate=true" \
-     -F "projectName=tour-of-heroes-dotnet-api" \
-     -F "projectVersion=1.0.0" \
-     -F "bom=@bom-with-license.json" \
      -w '%{response_code}'
 
 

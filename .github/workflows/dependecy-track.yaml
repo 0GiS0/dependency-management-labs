@@ -20,14 +20,11 @@ jobs:
       run: dotnet build --configuration Release
     - name: Install cdxgen
       run: npm install -g @cyclonedx/cdxgen
-    - name: Generate SBOM
-      run: cdxgen tour-of-heroes-dotnet-api/ -o bom-1.4.json --spec-version 1.4    
-    - name: Send SBOM to DependencyTrack server
-      uses: DependencyTrack/gh-upload-sbom@v2.0.0
-      with:            
-        serverHostname: ${{ secrets.DEPENDENCYTRACK_HOSTNAME }}        
-        apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
-        projectName: 'Tour of Heroes API from GitHub Actions'
-        projectVersion: 'main'
-        bomFilename: "bom-1.4.json"
-        autoCreate: true
+    - name: Generate SBOM and send to Dependecy-track server
+      run: |
+        FETCH_LICENSE=true cdxgen tour-of-heroes-dotnet-api/ -o bom-1.4.json --spec-version 1.4 \
+        --server-url ${{ secrets.DEPENDENCYTRACK_HOSTNAME }} \
+        --api-key ${{ secrets.DEPENDENCYTRACK_APIKEY }} \
+        --project-name tour-of-heroes-dotnet-cdxgen \
+        --project-version 1.0.0 \
+        --auto-create 
