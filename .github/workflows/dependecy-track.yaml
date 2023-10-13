@@ -22,7 +22,8 @@ jobs:
       run: npm install -g @cyclonedx/cdxgen
     - name: Generate SBOM and send to Dependecy-track server
       run: |
-        FETCH_LICENSE=true cdxgen tour-of-heroes-dotnet-api/ -o bom-1.4.json --spec-version 1.4 \
+        pwd 
+        FETCH_LICENSE=true cdxgen -o bom-1.4.json --spec-version 1.4 \
         --server-url ${{ secrets.DEPENDENCYTRACK_HOSTNAME }} \
         --api-key ${{ secrets.DEPENDENCYTRACK_APIKEY }} \
         --project-name tour-of-heroes-dotnet-from-gh-actions \

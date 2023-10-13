@@ -20,10 +20,10 @@ curl -X "POST" "http://localhost:8080/api/v1/bom" \
      -w '%{response_code}'
 
 # Use cdxgen to upload the result
-FETCH_LICENSE=true cdxgen -o bom-from-cdxgen.json --spec-version 1.4 \
---server-url https://refactored-winner-96rjjwr96fx7px-8081.app.github.dev \
---api-key 1YTRKqtdRBk3ore2vciFvHSjcauYVcJp \
---project-name tour-of-heroes-dotnet-cdxgen \
+cdxgen -o bom-from-cdxgen.json --spec-version 1.4 \
+--server-url http://localhost:8080 \
+--api-key QN0pNzIFxraSqO4U97kvLsFoCv8zfHR8 \
+--project-name tour-of-heroes-dotnet-cdxgen-test \
 --project-version 1.0.0 \
 --auto-create 
 
