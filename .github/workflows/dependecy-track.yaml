@@ -25,7 +25,7 @@ jobs:
     - name: Send SBOM to DependencyTrack server
       uses: DependencyTrack/gh-upload-sbom@v2.0.0
       with:            
-        serverHostname: ${{ secrets.DEPENDENCYTRACK_HOSTNAME }}        
+        serverHostname: refactored-winner-96rjjwr96fx7px-8081.app.github.dev
         apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
         projectName: 'Tour of Heroes API from GitHub Actions'
         projectVersion: 'main'
