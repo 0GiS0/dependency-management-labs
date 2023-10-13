@@ -25,6 +25,6 @@ jobs:
         FETCH_LICENSE=true cdxgen tour-of-heroes-dotnet-api/ -o bom-1.4.json --spec-version 1.4 \
         --server-url ${{ secrets.DEPENDENCYTRACK_HOSTNAME }} \
         --api-key ${{ secrets.DEPENDENCYTRACK_APIKEY }} \
-        --project-name tour-of-heroes-dotnet-cdxgen \
+        --project-name tour-of-heroes-dotnet-from-gh-actions \
         --project-version 1.0.0 \
         --auto-create 
