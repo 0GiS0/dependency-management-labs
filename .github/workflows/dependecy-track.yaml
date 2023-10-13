@@ -19,7 +19,7 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release
     - name: Install cdxgen
-      run: npm install -g cdxgen
+      run: npm install -g @cyclonedx/cdxgen
     - name: Generate SBOM
       run: cdxgen tour-of-heroes-dotnet-api/ -o bom-1.4.json --spec-version 1.4    
     - name: Send SBOM to DependencyTrack server
