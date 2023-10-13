@@ -18,8 +18,9 @@ jobs:
    displayName: 'Generate SBOM and Send to Dependency Track' 
    steps:
    - task: NodeTool@0
-     inputs:       
-       checkLatest: true
+     inputs:
+      versionSource: 'spec'
+      versionSpec: '18.x'
    - task: CmdLine@2
      displayName: "Checkout a public GH repo"
      inputs:
