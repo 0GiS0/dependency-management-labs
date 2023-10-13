@@ -11,15 +11,16 @@ volumes:
 
 services:
   app:      
-      build:
-        context: .
-        dockerfile: Dockerfile
+      # build:
+      #   context: .
+      #   dockerfile: Dockerfile
+      image: mcr.microsoft.com/devcontainers/dotnet:0-7.0
       volumes:
         - ../..:/workspaces:cached
       # Overrides default command so things don't shut down after the process ends.
       command: sleep infinity
       # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
-      # network_mode: service:dtrack-apiserver
+      network_mode: service:dtrack-apiserver
 
       # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
       # (Adding the "ports" property to this file will not forward from a Codespace.)
@@ -121,7 +122,6 @@ services:
     volumes:
       - 'dependency-track:/data'
     restart: unless-stopped
-
   dtrack-frontend:
     image: dependencytrack/frontend
     depends_on:

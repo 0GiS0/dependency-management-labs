@@ -8,7 +8,8 @@
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/snyk-cli:1": {}
+		"ghcr.io/devcontainers-contrib/features/snyk-cli:1": {},
+		"ghcr.io/devcontainers-contrib/features/node-asdf:0": {}
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
@@ -25,10 +26,10 @@
 				"GitHub.copilot"
 			]
 		}
-	}
+	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "npm install -g @cyclonedx/cdxgen"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
